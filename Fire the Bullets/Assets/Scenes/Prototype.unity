@@ -286,7 +286,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &497559607
 Transform:
   m_ObjectHideFlags: 0
@@ -365,6 +365,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -444,6 +445,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3909c117413f54b15b7853bdb057ad63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pause: 0
 --- !u!1 &587527631
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,8 +711,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  stoppingDistance: 7
-  retreatDistance: 0
+  stoppingDistance: 5
+  retreatDistance: 4
   startTimeBtwShots: 1.5
   projectile: {fileID: 1785537782364406, guid: 42b32362959b84abc853601c6743c59f, type: 2}
 --- !u!1 &1496633197
@@ -719,7 +732,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1496633198
 Transform:
   m_ObjectHideFlags: 0
@@ -796,6 +809,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1955589816}
   - component: {fileID: 1955589815}
+  - component: {fileID: 1955589817}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -862,3 +876,15 @@ Transform:
   m_Father: {fileID: 295930171}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1955589817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1955589814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8adb9787a9034b2991187f2665e7947, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 1785537782364406, guid: 42b32362959b84abc853601c6743c59f, type: 2}
