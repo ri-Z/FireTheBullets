@@ -7,27 +7,30 @@ public class MouseAimShoot : MonoBehaviour {
     //public Transform target;
 
     public GameObject projectile;
+    public Transform shotPoint;
 
     void Start () {
-		
-	}
-	
-	void Update () {
+        
+    }
+    
+    void Update () {
         //target.transform.LookAt(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 
-        Vector2 mousePosition = Input.mousePosition;
-        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        //THESE TWO LINES ARE TO ROTATE THE WEAPON TOWARDS THE DIRECTION OF THE MOUSE
         Vector2 direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
-        transform.up = -direction;
-        //transform.LookAt(direction); NOT WORKING
+        transform.up = -direction; //negative direction because the sprite of the weapon is facing down
+
+        //transform.LookAt(direction); THIS LINE IS NOT WORKING
 
 
         //Shooting
         if (Input.GetMouseButtonDown(0))
         {
             Debug.Log("Fire the Bullets");
-            Instantiate(projectile, direction, Quaternion.identity);
+            Instantiate(projectile, shotPoint.position, Quaternion.identity);
         }
     }
 }
