@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LVL1Shooter : MonoBehaviour {
+    //Goes for the Player
 
     public float speed;
 

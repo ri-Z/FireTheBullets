@@ -23,8 +23,9 @@ GameObject:
   - component: {fileID: 58838592378961134}
   - component: {fileID: 50332240591406048}
   - component: {fileID: 114816386716093164}
+  - component: {fileID: 114116097130707364}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: BulletEnemyToPlayer
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,6 +79,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.15
+--- !u!114 &114116097130707364
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1785537782364406}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57b0fbcac7bac4f2492b7fd361303805, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3.5
 --- !u!114 &114816386716093164
 MonoBehaviour:
   m_ObjectHideFlags: 1

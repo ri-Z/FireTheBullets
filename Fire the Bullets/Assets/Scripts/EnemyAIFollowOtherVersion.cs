@@ -18,7 +18,6 @@ public class EnemyAIFollowOtherVersion : MonoBehaviour {
     void Update () {
         if (Vector2.Distance(transform.position, targetPlayer.position) > stoppingDistance){
             transform.position = Vector2.MoveTowards(transform.position, targetPlayer.position, speed * Time.deltaTime);
-
         }
         //else{
         //    transform.position = Vector2.MoveTowards(transform.position, targetBase.position, speed * Time.deltaTime);
