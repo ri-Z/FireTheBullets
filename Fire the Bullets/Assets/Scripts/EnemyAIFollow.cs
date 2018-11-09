@@ -51,8 +51,8 @@ public class EnemyAIFollow : MonoBehaviour {
         //}
 
         Debug.DrawLine(this.transform.position, Base);
-        Debug.Log("mag:" + BaseDirection.magnitude);
-        Debug.Log("sqr: " + BaseDirection.sqrMagnitude);
+        //Debug.Log("mag:" + BaseDirection.magnitude);
+        //Debug.Log("sqr: " + BaseDirection.sqrMagnitude);
         //use this one 
         if (BaseDirection.sqrMagnitude < 50)
         {

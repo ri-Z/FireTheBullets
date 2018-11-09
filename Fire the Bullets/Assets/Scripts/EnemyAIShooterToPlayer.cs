@@ -14,84 +14,69 @@ public class EnemyAIShooterToPlayer : MonoBehaviour {
     public GameObject projectile;
     private Transform player;
     private Transform baseT;
+    public float priorityBaseDistance;
 
-    //range to attack other stuff
-    private Vector3 Player;
-    //private Vector2 PlayerDirection;
-    private Vector3 Base;
-    //private Vector2 BaseDirection;
-    //private float xDif, yDif;
-    //private float xDifB, yDifB;
-    //private Rigidbody2D rb2d;
-    //public float stoppingDistanceBase;
 
     void Start () {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         baseT = GameObject.FindGameObjectWithTag("Base").transform;
 
         timeBtwShots = startTimeBtwShots;
-
-        Player = GameObject.Find("Player").transform.position;
-        Base = GameObject.Find("Base").transform.position;
-        //rb2d = GetComponent<Rigidbody2D>();
     }
 	
 	void Update () {
-        //Enemy movement em relacao ao player
-        if (Vector2.Distance(transform.position, player.position) > stoppingDistance)
+
+        Vector2 currentEnemy;
+        float baseTDistance = Vector2.Distance(transform.position, baseT.position);
+        if (baseTDistance <= priorityBaseDistance)
         {
-            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
-        }else if (Vector2.Distance(transform.position, player.position) < stoppingDistance && Vector2.Distance(transform.position, player.position) > retreatDistance)
-        {
-            transform.position = this.transform.position;
-        }else if (Vector2.Distance(transform.position, player.position) < retreatDistance)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, player.position, -speed * Time.deltaTime);
+            if (baseTDistance > stoppingDistance)
+                transform.position = Vector2.MoveTowards(transform.position, baseT.position, speed * Time.deltaTime);
+            else if (baseTDistance < retreatDistance)
+                transform.position = Vector2.MoveTowards(transform.position, baseT.position, -speed * Time.deltaTime);
+
+            transform.position = Vector2.MoveTowards(transform.position, baseT.position, speed * Time.deltaTime);
+            currentEnemy = new Vector2(baseT.position.x, baseT.position.y);
         }
+        else
+        {
+            float playerDistance = Vector2.Distance(transform.position, player.position);
+
+            if (playerDistance > stoppingDistance)
+                transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+            else if (playerDistance < retreatDistance)
+                transform.position = Vector2.MoveTowards(transform.position, player.position, -speed * Time.deltaTime);
+
+            currentEnemy = new Vector2(player.position.x, player.position.y);
+        }
+
+
+        //    //Enemy movement em relacao ao player
+        //    if (Vector2.Distance(transform.position, player.position) > stoppingDistance)
+        //{
+        //    transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+        //}else if (Vector2.Distance(transform.position, player.position) < stoppingDistance && Vector2.Distance(transform.position, player.position) > retreatDistance)
+        //{
+        //    transform.position = this.transform.position;
+        //}else if (Vector2.Distance(transform.position, player.position) < retreatDistance)
+        //{
+        //    transform.position = Vector2.MoveTowards(transform.position, player.position, -speed * Time.deltaTime);
+        //}
         //else if (Vector2.Distance(transform.position, baseT.position) > stoppingDistanceBase)
         //{
         //    transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
         //}
 
-        //Enemy Shots
+        //Enemy Shots time between them
         if (timeBtwShots <= 0)
         {
-            Instantiate(projectile, transform.position, Quaternion.identity);
+            EnemyBullet bullet = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<EnemyBullet>();
+            bullet.SetTarget(currentEnemy);
+
             timeBtwShots = startTimeBtwShots;
         }else
         {
             timeBtwShots -= Time.deltaTime;
         }
-
-        if istouching
-
-        ////Ranges
-        ////Player Range
-        //xDif = Player.x - transform.position.x;
-        //yDif = Player.y - transform.position.y;
-        //PlayerDirection = new Vector2(xDif, yDif);
-
-        ////Base Range
-        //xDifB = Base.x - transform.position.x;
-        //yDifB = Base.y - transform.position.y;
-        //BaseDirection = new Vector2(xDifB, yDifB);
-
-        ////Range Calculation
-        //Debug.DrawLine(this.transform.position, BaseDirection);
-        //Debug.Log("mag:" + BaseDirection.magnitude);
-        //Debug.Log("sqr: " + BaseDirection.sqrMagnitude);
-        //if (BaseDirection.sqrMagnitude < 50)
-        //{
-        //    rb2d.transform.position = Vector2.MoveTowards(rb2d.transform.position, Base, speed * Time.deltaTime /* 1 */);
-        //}
-        //else if (PlayerDirection.sqrMagnitude < 25)
-        //{
-        //    //rb2d.AddForce(PlayerDirection.normalized * speed);
-        //    rb2d.transform.position = Vector2.MoveTowards(rb2d.transform.position, Player, speed * Time.deltaTime /* 1 */);
-        //}
-        //else if (BaseDirection.sqrMagnitude < 100 * 100)
-        //{
-        //    rb2d.transform.position = Vector2.MoveTowards(rb2d.transform.position, Base, speed * Time.deltaTime /* 1 */);
-        //}
     }
 }

@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyShooterAIToBase : MonoBehaviour
-{
+public class EnemyAIShooterToBase : MonoBehaviour{
 
     public float speed;
     public float stoppingDistance;
@@ -15,6 +14,8 @@ public class EnemyShooterAIToBase : MonoBehaviour
     public GameObject projectile;
     private Transform Base;
 
+    private Vector2 currentEnemy;
+
     void Start()
     {
         Base = GameObject.FindGameObjectWithTag("Base").transform;
@@ -25,23 +26,22 @@ public class EnemyShooterAIToBase : MonoBehaviour
     void Update()
     {
         //Enemy movement em relacao a base
-        if (Vector2.Distance(transform.position, Base.position) > stoppingDistance)
-        {
+        float baseTDistance = Vector2.Distance(transform.position, Base.position);
+
+        if (baseTDistance > stoppingDistance)
             transform.position = Vector2.MoveTowards(transform.position, Base.position, speed * Time.deltaTime);
-        }
-        else if (Vector2.Distance(transform.position, Base.position) < stoppingDistance && Vector2.Distance(transform.position, Base.position) > retreatDistance)
-        {
-            transform.position = this.transform.position;
-        }
-        else if (Vector2.Distance(transform.position, Base.position) < retreatDistance)
-        {
+        else if (baseTDistance < retreatDistance)
             transform.position = Vector2.MoveTowards(transform.position, Base.position, -speed * Time.deltaTime);
-        }
+
+        //transform.position = Vector2.MoveTowards(transform.position, Base.position, speed * Time.deltaTime);
+        currentEnemy = new Vector2(Base.position.x, Base.position.y);
 
         //Enemy Shots
         if (timeBtwShots <= 0)
         {
-            Instantiate(projectile, transform.position, Quaternion.identity);
+            EnemyBullet bullet = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<EnemyBullet>();
+            bullet.SetTarget(currentEnemy);
+
             timeBtwShots = startTimeBtwShots;
         }
         else

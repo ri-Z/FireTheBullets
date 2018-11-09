@@ -2,23 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LVL2Shooter : MonoBehaviour {
-    //Goes for the Base
+public class EnemyBullet : MonoBehaviour {
+    //Goes for the Player and Base
 
     public float speed;
 
-    private Transform Base;
+    //private Transform player;
     private Vector2 target;
 
-    void Start()
-    {
-        Base = GameObject.FindGameObjectWithTag("Base").transform;
+	void Start () {
+        //player = GameObject.FindGameObjectWithTag("Player").transform;
 
-        target = new Vector2(Base.position.x, Base.position.y);
-    }
+        //target = new Vector2(player.position.x, player.position.y);
+	}
 
-    void Update()
+    public void SetTarget(Vector2 newTarget)
     {
+        target = newTarget;
+    }	
+
+	void Update () {
+        //to follow the player isntead of target do player.position
         transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
         //if x and y coordinates are equal to the target's coordinates
@@ -36,8 +40,7 @@ public class LVL2Shooter : MonoBehaviour {
         }
     }
 
-    void DestroyProjectile()
-    {
+    void DestroyProjectile(){
         Destroy(gameObject);
     }
 }

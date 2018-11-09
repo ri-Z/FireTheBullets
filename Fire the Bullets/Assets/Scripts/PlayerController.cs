@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour {
         verticalMove = Input.GetAxisRaw("Vertical") * speed;
 
         Vector2 movement = new Vector2(horizontalMove, verticalMove);
-        Debug.Log("moving");
+        //Debug.Log("moving");
 
         if (movement != Vector2.zero){
             anim.SetBool("isWalking", true);
