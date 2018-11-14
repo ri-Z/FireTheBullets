@@ -42,8 +42,6 @@ public class MouseAimShoot : MonoBehaviour {
         }
 
         //target.transform.LookAt(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-
-
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         //THESE TWO LINES ARE TO ROTATE THE WEAPON TOWARDS THE DIRECTION OF THE MOUSE

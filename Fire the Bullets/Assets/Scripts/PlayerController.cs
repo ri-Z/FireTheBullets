@@ -15,10 +15,6 @@ public class PlayerController : MonoBehaviour {
     private float horizontalMove = 0f;
     private float verticalMove = 0f;
 
-    private void Awake(){
-        Debug.Log("Awake");
-    }
-
     void Start () {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
