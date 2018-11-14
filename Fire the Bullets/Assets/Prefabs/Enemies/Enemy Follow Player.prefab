@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 50899875058699846}
   - component: {fileID: 58214523963819024}
   - component: {fileID: 114989246179991894}
-  - component: {fileID: 114497735719441232}
   - component: {fileID: 114823025074694938}
   - component: {fileID: 114654206188924048}
   m_Layer: 0
@@ -81,19 +80,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.4
---- !u!114 &114497735719441232
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1552041441134092}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 549a0d3ede72d46aa8d49fcf28a1f007, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 4
-  stoppingDistance: 2
 --- !u!114 &114654206188924048
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -120,7 +106,7 @@ MonoBehaviour:
   stoppingDistance: 5
   retreatDistance: 4
   startTimeBtwShots: 1.5
-  projectile: {fileID: 0}
+  projectile: {fileID: 1785537782364406, guid: 6a6fc80265bbf4f468cd7fee74f3fe6c, type: 2}
   priorityBaseDistance: 0
 --- !u!114 &114989246179991894
 MonoBehaviour:

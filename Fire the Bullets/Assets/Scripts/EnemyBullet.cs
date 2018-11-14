@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyBullet : MonoBehaviour {
     //Goes for the Player and Base
 
+    public float damage;
     public float speed;
     private Vector2 target;
 

@@ -21,14 +21,14 @@ public class EnemyAIFollow : MonoBehaviour {
 	}
 	
 	void Update () {
-        Player = GameObject.Find("Player").transform.position;
+        Player = GameObject.FindWithTag("Player").transform.position;
 
         xDif = Player.x - transform.position.x;
         yDif = Player.y - transform.position.y;
 
         PlayerDirection = new Vector2(xDif, yDif);
 
-        Base = GameObject.Find("Base").transform.position;
+        Base = GameObject.FindWithTag("Base").transform.position;
 
         xDifB = Base.x - transform.position.x;
         yDifB = Base.y - transform.position.y;

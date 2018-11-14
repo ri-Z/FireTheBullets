@@ -18,6 +18,11 @@ public class PlayerBullet : MonoBehaviour {
         //transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
         transform.position += transform.right * speed * Time.deltaTime;
 
+        if (Vector3.Distance(transform.position, GameManager.instance.player.transform.position) >= 20f)
+        {
+            DestroyProjectile();
+        }
+
         //if x and y coordinates are equal to the target's coordinates
         //if (transform.position.x == target.x && transform.position.y == target.y)
         //{
