@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour {
+public class TowerSpawner : MonoBehaviour {
 
     public Transform[] spawnLocations;
-    public GameObject[] whatToSpawnPrefab;
-    public GameObject[] whatToSpawnClone;
+    public GameObject[] towerPrefabs;
+    //public GameObject[] whatToSpawnClone;
 
-    private Collider2D Player;
+    //private Collider2D Player;
     public Collider2D[] colliders;
 
     void Start () {
         //spawn();
-        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Collider2D>();
+        //Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Collider2D>();
         colliders = gameObject.GetComponentsInChildren<Collider2D>();
     }
 
@@ -21,11 +21,14 @@ public class Spawner : MonoBehaviour {
 
     }
 
-    public void spawn(){
-        for (int i = 0; i < whatToSpawnPrefab.Length; i++)
-        {
-            whatToSpawnClone[i] = Instantiate(whatToSpawnPrefab[i], spawnLocations[i].transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
-        }
+    public void spawn(Transform location)
+    {
+        int i = 0;
+
+        while (spawnLocations[i] != location)
+            ++i;
+
+        Instantiate(towerPrefabs[i], spawnLocations[i].transform.position, Quaternion.Euler(0, 0, 0));
     }
 
     //public void OnCollisionEnter2D(Collision2D collision)
