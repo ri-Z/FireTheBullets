@@ -35,10 +35,6 @@ public class PlayerBullet : MonoBehaviour {
         if (collision.CompareTag("Enemy") || collision.CompareTag("Bullet"))
         {
             DestroyProjectile();
-            if (collision.CompareTag("Enemy"))
-            {
-                Destroy(gameObject, 2f);
-            }
         }
     }
 
