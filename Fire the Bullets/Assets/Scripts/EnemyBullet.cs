@@ -7,12 +7,14 @@ public class EnemyBullet : MonoBehaviour {
 
     public float damage;
     public float speed;
+
+    private Transform player;
     private Vector2 target;
 
 	void Start () {
         //target = new Vector2(player.position.x, player.position.y);
 
-        transform.right = new Vector3(target.x, target.y, 0) - transform.position;
+        //transform.right = new Vector3(target.x, target.y, 0) - transform.position;
     }
 
     public void SetTarget(Vector2 newTarget)
@@ -23,7 +25,7 @@ public class EnemyBullet : MonoBehaviour {
 	void Update () {
         //to follow the player isntead of target do player.position
         //transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
-        transform.position += transform.right * speed * Time.deltaTime;
+        //transform.position += transform.right * speed * Time.deltaTime;
 
         //if x and y coordinates are equal to the target's coordinates
         //if (transform.position.Equals(target))
@@ -31,18 +33,30 @@ public class EnemyBullet : MonoBehaviour {
         //    DestroyProjectile();
         //    Debug.Log("cheguei ao target");
         //}
+
+        //test
+        player = GameManager.instance.player.transform;
+
+        target = new Vector2(player.position.x, player.position.y);
+
+        //to follow the player isntead of target do player.position
+        transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") || collision.CompareTag("Base") || collision.CompareTag("Bullet"))
         {
+            GameManager.instance.player.Hit(this);
             DestroyProjectile();
-        } 
-        //else if (collision == null && (Time.time == 5f))
-        //{
-        //    Destroy(gameObject, 2f);
-        //}
+        }
+        else if (collision.CompareTag("Base") || collision.CompareTag("Bullet"))
+        {
+            //Destroy(gameObject, 2f);
+            //test
+            DestroyProjectile();
+        }
     }
 
     void DestroyProjectile(){
