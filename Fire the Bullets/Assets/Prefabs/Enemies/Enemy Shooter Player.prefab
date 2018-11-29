@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 50733918427249972}
   - component: {fileID: 58079214873913598}
   - component: {fileID: 114103497162712374}
-  - component: {fileID: 114683329070970182}
+  - component: {fileID: 114823379500348980}
   m_Layer: 0
   m_Name: Enemy Shooter Player
   m_TagString: Enemy
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1717078344814564}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.494284, y: -6.3368316, z: 0}
+  m_LocalPosition: {x: -15.1, y: 15.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -90,13 +90,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8012bb27d8e2f4ccfabcdb8cb5f0be52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 5
   stoppingDistance: 5
   retreatDistance: 4
   startTimeBtwShots: 1.5
   projectile: {fileID: 1785537782364406, guid: 6a6fc80265bbf4f468cd7fee74f3fe6c, type: 2}
   priorityBaseDistance: 10
---- !u!114 &114683329070970182
+--- !u!114 &114823379500348980
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -104,12 +104,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1717078344814564}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abe27a193ecb7b847b086d5b5aa32abc, type: 3}
+  m_Script: {fileID: 11500000, guid: 4afb35844ac0446bfb73b3513248c863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 20
-  initialLife: 100
-  currentLife: 0
 --- !u!212 &212578041187371756
 SpriteRenderer:
   m_ObjectHideFlags: 1

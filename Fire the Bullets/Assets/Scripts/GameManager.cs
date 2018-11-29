@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -14,6 +13,8 @@ public class GameManager : MonoBehaviour {
     public Transform baseSpawnPoint;
     public GameObject basePrefab;
     public Base baseObject;
+
+    public Transform HealthBarPrefab;
 
     void Start()
     {
@@ -49,21 +50,4 @@ public class GameManager : MonoBehaviour {
 
         this.baseObject = baseObject;
     }
-
-	public void GameOver(){
-		string s = PlayerPrefs.GetString("FTB_SCORE_1");
-		float score1 = float.Parse( PlayerPrefs.GetString("FTB_SCORE_1") == "" ? "0" : PlayerPrefs.GetString("FTB_SCORE_1") );
-		float score2 = float.Parse( PlayerPrefs.GetString("FTB_SCORE_2") == "" ? "0" : PlayerPrefs.GetString("FTB_SCORE_2") );
-		float score3 = float.Parse( PlayerPrefs.GetString("FTB_SCORE_3") == "" ? "0" : PlayerPrefs.GetString("FTB_SCORE_3") );
-
-		if( score1 == 0 || score1 <= player.currentScore ){
-			PlayerPrefs.SetString("FTB_SCORE_1", player.currentScore.ToString());
-		}else if( score2 == 0 || score2 <= player.currentScore ){
-			PlayerPrefs.SetString("FTB_SCORE_2", player.currentScore.ToString());
-		}else if( score3 == 0 || score3 <= player.currentScore ){
-			PlayerPrefs.SetString("FTB_SCORE_3", player.currentScore.ToString());
-		}
-
-		SceneManager.LoadScene("GameOver");
-	}
 }

@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 50972753960674204}
   - component: {fileID: 58716594875270640}
   - component: {fileID: 114951000186137498}
-  - component: {fileID: 114157969231571858}
+  - component: {fileID: 114994429115374040}
   m_Layer: 0
   m_Name: Enemy Shooter Base
   m_TagString: Enemy
@@ -79,20 +79,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.4
---- !u!114 &114157969231571858
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1663520940018220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abe27a193ecb7b847b086d5b5aa32abc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: 10
-  initialLife: 100
-  currentLife: 0
 --- !u!114 &114951000186137498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -104,11 +90,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b8b6b09316445e8ba4b53752574291, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 4
   stoppingDistance: 4
   retreatDistance: 3
   startTimeBtwShots: 1
   projectile: {fileID: 1785537782364406, guid: 6a6fc80265bbf4f468cd7fee74f3fe6c, type: 2}
+--- !u!114 &114994429115374040
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1663520940018220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4afb35844ac0446bfb73b3513248c863, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212482813701775680
 SpriteRenderer:
   m_ObjectHideFlags: 1

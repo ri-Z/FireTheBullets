@@ -1,42 +1,45 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Base : MonoBehaviour {
 
+    public SimpleHealthBar healthBar;
+
     public float startLife;
     public float currentLife;
-
-    public SpriteRenderer currentLifeSprite;
-	public float startLifeSpriteWidth;
-    public float currentLifeSpriteWidth = 2.1f;
-    public float currentLifeSpriteHight = 0.73f;
+    public float maxHealth;
 
     void Start()
     {
-		currentLifeSpriteWidth = startLifeSpriteWidth;
         currentLife = startLife;
-        currentLifeSprite.size = new Vector2(currentLifeSpriteWidth, currentLifeSpriteHight);
+        healthBar.UpdateBar(currentLife, maxHealth);
     }
 
-    public void Hit(EnemyBullet bullet)
+    public void Hit(int damage)
     {
-		float damageAmount = bullet.damage / startLife;
+        currentLife -= damage;
+        Debug.Log("currentLifeBase" + currentLife);
 
-		currentLife -= bullet.damage;
+        healthBar.UpdateBar(currentLife, maxHealth);
 
-		if( currentLife <= 0 ){
-			currentLife = 0;
-			currentLifeSprite.size = new Vector2(0, currentLifeSpriteHight);
-			Die();
-		}else if (currentLife > 0){
-			currentLifeSprite.size = new Vector2(currentLifeSprite.size.x - (startLifeSpriteWidth * damageAmount), currentLifeSpriteHight);
-		}
+        //if (currentLife >= 0)
+        //{
+        //    //currentLifeSprite.size = new Vector2(currentLifeSprite.size.x - (currentLifeSpriteWidth * damageAmount), currentLifeSpriteHight);
+        //}
+        //else
+        //{
+        //    Die();
+        //}
+
+        if (currentLife <= 0)
+        {
+            Die();
+        }
     }
 
     public void Die()
     {
-		SceneManager.LoadScene("GameOver");
+        Destroy(gameObject);
     }
 }

@@ -8,7 +8,6 @@ public class GameUIManager : MonoBehaviour {
     public static GameUIManager instance;
 
     public Text playerLife;
-	public Text playerScore;
 
     void Start()
     {
@@ -22,12 +21,6 @@ public class GameUIManager : MonoBehaviour {
         }
     }
 
-	void Update(){
-		if( GameManager.instance.player != null ){
-			playerScore.text = GameManager.instance.player.currentScore.ToString();
-		}
-	}
-
     public void UpdatePlayerLife()
     {
         playerLife.text = GameManager.instance.player.currentLife.ToString();
@@ -36,5 +29,5 @@ public class GameUIManager : MonoBehaviour {
     public void UpdateBaseLife()
     {
         playerLife.text = GameManager.instance.player.currentLife.ToString();
-	}
+    }
 }

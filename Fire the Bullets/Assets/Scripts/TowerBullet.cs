@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerBullet : MonoBehaviour, ITowerProjectile {
+public class TowerBullet : MonoBehaviour {
 
     private Transform target;
 
     public float speed = 70f;
 
-	public void SetTarget(Transform target){
-		this.target = target;
-	}
+    public void Seek(Transform _target){
+        target = _target;
+    }
 
 	void Start () {
 
@@ -37,7 +37,7 @@ public class TowerBullet : MonoBehaviour, ITowerProjectile {
     }
 
     void hitTarget(){
+        Destroy(target.gameObject);
         Destroy(gameObject);
-		target.GetComponent<Enemy>().Hit(100);
     }
 }

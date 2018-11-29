@@ -12,37 +12,41 @@ public class EnemyAIShooterToBase : MonoBehaviour{
     public float startTimeBtwShots;
 
     public GameObject projectile;
+    private Transform Base;
 
     private Vector2 currentEnemy;
 
     void Start()
     {
+        Base = GameObject.FindGameObjectWithTag("Base").transform;
+
         timeBtwShots = startTimeBtwShots;
     }
 
     void Update()
     {
-		if (GameManager.instance.baseObject != null) {
-			//Enemy movement em relacao a base
-			float baseTDistance = Vector2.Distance(transform.position, GameManager.instance.baseObject.transform.position);
+        //Enemy movement em relacao a base
+        float baseTDistance = Vector2.Distance(transform.position, Base.position);
 
-			if (baseTDistance > stoppingDistance)
-				transform.position = Vector2.MoveTowards(transform.position, GameManager.instance.baseObject.transform.position, speed * Time.deltaTime);
-			else if (baseTDistance < retreatDistance)
-				transform.position = Vector2.MoveTowards(transform.position, GameManager.instance.baseObject.transform.position, -speed * Time.deltaTime);
+        if (baseTDistance > stoppingDistance)
+            transform.position = Vector2.MoveTowards(transform.position, Base.position, speed * Time.deltaTime);
+        else if (baseTDistance < retreatDistance)
+            transform.position = Vector2.MoveTowards(transform.position, Base.position, -speed * Time.deltaTime);
 
-			//transform.position = Vector2.MoveTowards(transform.position, Base.position, speed * Time.deltaTime);
-			currentEnemy = new Vector2(GameManager.instance.baseObject.transform.position.x, GameManager.instance.baseObject.transform.position.y);
+        //transform.position = Vector2.MoveTowards(transform.position, Base.position, speed * Time.deltaTime);
+        currentEnemy = new Vector2(Base.position.x, Base.position.y);
 
-			//Enemy Shots
-			if ( Vector3.Distance(GameManager.instance.baseObject.transform.position, transform.position) <= 15 && timeBtwShots <= 0) {
-				EnemyBullet bullet = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<EnemyBullet>();
-				bullet.SetTarget(currentEnemy);
+        //Enemy Shots
+        if (timeBtwShots <= 0)
+        {
+            EnemyBullet bullet = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<EnemyBullet>();
+            bullet.SetTarget(currentEnemy);
 
-				timeBtwShots = startTimeBtwShots;
-			} else {
-				timeBtwShots -= Time.deltaTime;
-			}
-		}
+            timeBtwShots = startTimeBtwShots;
+        }
+        else
+        {
+            timeBtwShots -= Time.deltaTime;
+        }
     }
 }

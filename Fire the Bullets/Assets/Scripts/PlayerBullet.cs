@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerBullet : MonoBehaviour {
 
     public float speed;
-	public float damage;
     private Vector2 target;
 
     void Start()
@@ -19,10 +18,10 @@ public class PlayerBullet : MonoBehaviour {
         //transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
         transform.position += transform.right * speed * Time.deltaTime;
 
-        if (Vector3.Distance(transform.position, GameManager.instance.player.transform.position) >= 20f)
-        {
-            DestroyProjectile();
-        }
+        //if (Vector3.Distance(transform.position, GameManager.instance.player.transform.position) >= 20f)
+        //{
+        //    DestroyProjectile();
+        //}
 
         //if x and y coordinates are equal to the target's coordinates
         //if (transform.position.x == target.x && transform.position.y == target.y)
@@ -36,10 +35,9 @@ public class PlayerBullet : MonoBehaviour {
         if (collision.CompareTag("Enemy") || collision.CompareTag("Bullet"))
         {
             DestroyProjectile();
-            
-			if (collision.CompareTag("Enemy"))
+            if (collision.CompareTag("Enemy"))
             {
-				collision.GetComponent<Enemy>().Hit(damage);
+                Destroy(gameObject, 2f);
             }
         }
     }

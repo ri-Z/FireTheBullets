@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4645616215487510}
   - component: {fileID: 212161557684384834}
   - component: {fileID: 58349197930273950}
-  - component: {fileID: 114394657465791228}
+  - component: {fileID: 114323807276240018}
   m_Layer: 0
   m_Name: Range
   m_TagString: Untagged
@@ -116,7 +116,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.49999997
---- !u!114 &114394657465791228
+--- !u!114 &114323807276240018
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,13 +124,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1772117739217364}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe4fc945e064dd74781f8d579f2e29d3, type: 3}
+  m_Script: {fileID: 11500000, guid: 7a88cdb6a53944ae08d88a16acb045be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   range: 4
-  fireRate: 3
+  fireRate: 1
   tagerino: Enemy
-  towerBullet: {fileID: 1957572084548654, guid: 0e7601f0d17a5489e8c01d8e3806d5fb,
+  towerBullet: {fileID: 1517441059737154, guid: 86639afb63f1845b79709934faa745fc,
     type: 2}
   firePoint: {fileID: 4496906719806910}
 --- !u!212 &212161557684384834

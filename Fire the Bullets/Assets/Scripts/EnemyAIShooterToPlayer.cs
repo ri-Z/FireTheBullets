@@ -12,45 +12,54 @@ public class EnemyAIShooterToPlayer : MonoBehaviour {
     public float startTimeBtwShots;
 
     public GameObject projectile;
+    private Transform player;
+    private Transform baseT;
     public float priorityBaseDistance;
 
 
     void Start () {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        baseT = GameObject.FindGameObjectWithTag("Base").transform;
+
         timeBtwShots = startTimeBtwShots;
     }
 	
 	void Update () {
-		if (GameManager.instance.player != null) {
-			Vector2 currentEnemy;
-			float baseTDistance = Vector2.Distance(transform.position, GameManager.instance.baseObject.transform.position);
-			if (baseTDistance <= priorityBaseDistance) {
-				if (baseTDistance > stoppingDistance)
-					transform.position = Vector2.MoveTowards(transform.position, GameManager.instance.baseObject.transform.position, speed * Time.deltaTime);
-				else if (baseTDistance < retreatDistance)
-					transform.position = Vector2.MoveTowards(transform.position, GameManager.instance.baseObject.transform.position, -speed * Time.deltaTime);
 
-				transform.position = Vector2.MoveTowards(transform.position, GameManager.instance.baseObject.transform.position, speed * Time.deltaTime);
-				currentEnemy = new Vector2(GameManager.instance.baseObject.transform.position.x, GameManager.instance.baseObject.transform.position.y);
-			} else {
-				float playerDistance = Vector2.Distance(transform.position, GameManager.instance.player.transform.position);
+        Vector2 currentEnemy;
+        float baseTDistance = Vector2.Distance(transform.position, baseT.position);
+        if (baseTDistance <= priorityBaseDistance)
+        {
+            if (baseTDistance > stoppingDistance)
+                transform.position = Vector2.MoveTowards(transform.position, baseT.position, speed * Time.deltaTime);
+            else if (baseTDistance < retreatDistance)
+                transform.position = Vector2.MoveTowards(transform.position, baseT.position, -speed * Time.deltaTime);
 
-				if (playerDistance > stoppingDistance)
-					transform.position = Vector2.MoveTowards(transform.position, GameManager.instance.player.transform.position, speed * Time.deltaTime);
-				else if (playerDistance < retreatDistance)
-					transform.position = Vector2.MoveTowards(transform.position, GameManager.instance.player.transform.position, -speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, baseT.position, speed * Time.deltaTime);
+            currentEnemy = new Vector2(baseT.position.x, baseT.position.y);
+        }
+        else
+        {
+            float playerDistance = Vector2.Distance(transform.position, player.position);
 
-				currentEnemy = new Vector2(GameManager.instance.player.transform.position.x, GameManager.instance.player.transform.position.y);
-			}
+            if (playerDistance > stoppingDistance)
+                transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+            else if (playerDistance < retreatDistance)
+                transform.position = Vector2.MoveTowards(transform.position, player.position, -speed * Time.deltaTime);
 
-			//Enemy Shots time between them
-			if (Vector3.Distance(GameManager.instance.player.transform.position, transform.position) <= 15 && timeBtwShots <= 0) {
-				EnemyBullet bullet = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<EnemyBullet>();
-				bullet.SetTarget(new Vector2(currentEnemy.x, currentEnemy.y));
+            currentEnemy = new Vector2(player.position.x, player.position.y);
+        }
 
-				timeBtwShots = startTimeBtwShots;
-			} else {
-				timeBtwShots -= Time.deltaTime;
-			}
-		}
+        //Enemy Shots time between them
+        if (timeBtwShots <= 0)
+        {
+            EnemyBullet bullet = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<EnemyBullet>();
+            bullet.SetTarget(currentEnemy);
+
+            timeBtwShots = startTimeBtwShots;
+        }else
+        {
+            timeBtwShots -= Time.deltaTime;
+        }
     }
 }

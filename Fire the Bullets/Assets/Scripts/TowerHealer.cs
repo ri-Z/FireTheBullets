@@ -2,24 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerHealer : MonoBehaviour, ITowerProjectile{
-
-    //public float timeBtwShots = 2f;
+public class TowerHealer : MonoBehaviour{
 
     private Transform target;
-    public float healStrenght = 20f;
+
     public float speed = 70f;
 
-	public void SetTarget(Transform target){
-		this.target = target;
-	}
+    public void Seek(Transform _target)
+    {
+        target = _target;
+    }
 
     void Start()
     {
-        //if (timeBtwShots <= 0)
-        //{
-        //    timeBtwShots -= Time.deltaTime;
-        //}
+
     }
 
     void Update()
@@ -44,7 +40,6 @@ public class TowerHealer : MonoBehaviour, ITowerProjectile{
 
     void hitTarget()
     {
-        GameManager.instance.player.healHit(healStrenght);
         Destroy(gameObject);
     }
 }

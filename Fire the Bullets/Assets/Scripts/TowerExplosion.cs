@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerExplosion : MonoBehaviour, ITowerProjectile
+public class TowerExplosion : MonoBehaviour
 {
 
     private Transform target;
@@ -10,9 +10,10 @@ public class TowerExplosion : MonoBehaviour, ITowerProjectile
     public float speed = 70f;
     public float explosionRadius = 0f;
 
-	public void SetTarget(Transform target){
-		this.target = target;
-	}
+    public void Seek(Transform _target)
+    {
+        target = _target;
+    }
 
     void Start()
     {
@@ -65,7 +66,8 @@ public class TowerExplosion : MonoBehaviour, ITowerProjectile
     }
 
     void Damage(Transform enemy){
-		target.GetComponent<Enemy>().Hit(100);
+        Destroy(enemy.gameObject);
+        //enemy.gameObject.
     }
 
     private void OnDrawGizmosSelected()

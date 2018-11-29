@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class EnemyAIFollow : MonoBehaviour {
 
+    public SimpleHealthBar healthBar;
+
+    public float startLife;
+    public float currentLife;
+    public float maxHealth;
+
+
     private Vector3 Player;
     private Vector2 PlayerDirection;
 
@@ -18,7 +25,10 @@ public class EnemyAIFollow : MonoBehaviour {
 
 	void Start () {
         rb2d = GetComponent<Rigidbody2D>();
-	}
+
+        currentLife = startLife;
+        healthBar.UpdateBar(currentLife, maxHealth);
+    }
 	
 	void Update () {
         Player = GameObject.FindWithTag("Player").transform.position;
@@ -65,5 +75,23 @@ public class EnemyAIFollow : MonoBehaviour {
             //rb2d.AddForce(BaseDirection.normalized * speed);
             rb2d.transform.position = Vector2.MoveTowards(rb2d.transform.position, Base, speed * Time.deltaTime /* 1 */);
         }
+    }
+
+    public void Hit(int damage)
+    {
+        currentLife -= damage;
+        Debug.Log("currentLifeBase" + currentLife);
+
+        healthBar.UpdateBar(currentLife, maxHealth);
+
+        if (currentLife <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
     }
 }
